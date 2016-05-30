@@ -10,6 +10,7 @@ gui.internalframe
 gui.label
 gui.layout
 gui.menu
+gui.menubar
 gui.menuitem
 gui.page
 gui.page.icon
