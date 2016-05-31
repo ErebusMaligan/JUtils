@@ -22,8 +22,6 @@ import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
-import statics.StringUtils;
-
 /**
  * In order to use this class properly, certain properties must have been set by first creating a new CustomInternalFrameProperties class somewhere in the application
  * 
@@ -110,16 +108,16 @@ public class CustomInternalFrameTitlePane extends BasicInternalFrameTitlePane {
 		} );
 	}
 	
-	@Override
-	protected String getTitle( String text, FontMetrics fm, int availTextWidth ) {
-		String c = text;
-		if ( text != null ) {
-			if ( text.length() > minTitleLength ) {
-				c = text.substring( 0, minTitleLength );
-			}
-		}
-		return StringUtils.ellipsize( c, Math.max( fm.stringWidth( c ), availTextWidth ) );
-	}
+//	@Override   NOT sure why i ever overrode this, it's completely not needed and breaks things without the now deprecated SwingUtilities2 references
+//	protected String getTitle( String text, FontMetrics fm, int availTextWidth ) {
+//		String c = text;
+//		if ( text != null ) {
+//			if ( text.length() > minTitleLength ) {
+//				c = text.substring( 0, minTitleLength );
+//			}
+//		}
+//		return StringUtils.ellipsize( c, Math.max( fm.stringWidth( c ), availTextWidth ) );
+//	}
 
 	@Override
 	protected LayoutManager createLayout() {
@@ -154,12 +152,12 @@ public class CustomInternalFrameTitlePane extends BasicInternalFrameTitlePane {
 
 			FontMetrics fm = frame.getFontMetrics( getFont() );
 			String frameTitle = frame.getTitle();
-			int title_w = frameTitle != null ? fm.stringWidth( frameTitle ) : 0;
+			int title_w = frameTitle != null ? fm.stringWidth( frameTitle ) : 0;  //used to be SwingUtilities2.stringWidth()
 			int title_length = frameTitle != null ? frameTitle.length() : 0;
 
 			// Leave room for 9 characters in the title.  was originally 3
 			if ( title_length > minTitleLength ) {
-				int subtitle_w = fm.stringWidth( frameTitle.substring( 0, minTitleLength - 3 ) + "..." );  //was substring( 0, 3 ) by default
+				int subtitle_w = fm.stringWidth( frameTitle.substring( 0, minTitleLength - 3 ) + "..." );  //was substring( 0, 3 ) by default    //used to be SwingUtilities2.stringWidth()
 				width += ( title_w < subtitle_w ) ? title_w : subtitle_w;
 			} else {
 				width += title_w;
