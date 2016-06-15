@@ -12,10 +12,12 @@ import java.io.StringWriter;
  */
 public class ExceptionUtils {
 	
-	public static String toString( Exception e ) throws IOException {
+	public static String toString( Exception e ) {
 		try ( StringWriter sw = new StringWriter() ) {
 			e.printStackTrace( new PrintWriter( sw ) );
 			return sw.toString();
+		} catch ( IOException e1 ) {
+			return "Unable to convert Exception to String";
 		}
 	}
 }
