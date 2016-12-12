@@ -1,5 +1,0 @@
-<project name="JUtils" basedir=".">
-	<property name="CommonBuild" value="../ant/common.ant"/> 
-	<property name="this.project" value="${ant.project.name}"/> 
-	<ant inheritAll="true" antfile="${CommonBuild}" target="release"/>
-</project>
