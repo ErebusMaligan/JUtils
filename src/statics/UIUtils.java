@@ -40,7 +40,11 @@ public class UIUtils {
 	}
 	
 	public static Color lightsOff( Color c, int count ) {
-		return count == 0 ? c : lightsOff( c.darker(), count -1 );
+		return count == 0 ? c : lightsOff( c.darker(), count - 1 );
+	}
+	
+	public static Color lightsOn( Color c, int count ) {
+		return count == 0 ? c : lightsOn( c.brighter(), count - 1 );
 	}
 	
 	public static void setColorsOff( Component c ) {
