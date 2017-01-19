@@ -148,7 +148,7 @@ public abstract class AbstractTableImplementation {
 		}
 	}
 	
-	private void storeSelected() {
+	protected void storeSelected() {
 //		System.out.println( "\n---------------------" );
 //		System.out.println( "STORING\n" );
 		selected.clear();
@@ -165,7 +165,7 @@ public abstract class AbstractTableImplementation {
 //		System.out.println( "---------------------" );
 	}
 	
-	private void restoreSelected() {
+	protected void restoreSelected() {
 //		System.out.println( "\n---------------------" );
 //		System.out.println( "RESTORING\n" );
 		List<Integer> l = new ArrayList<>();
