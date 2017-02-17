@@ -98,23 +98,27 @@ public class DefaultHeaderCellRenderer extends DefaultTableCellRenderer {
 		title.setHorizontalAlignment( JLabel.CENTER );
 		p.add( title, BorderLayout.CENTER );
 		p.setBorder( cellBorder );
-		if ( table.convertColumnIndexToView( ( (BasicTableSorter)ati.getTableSorter() ).getModelIndex() ) == column ) { //This is only safe if you know for a fact that your sorter is/extends BasicTableSorter
-			JLabel sort = new GradientLabel();
-			sort.setOpaque( false );
-			if ( ( (BasicTableSorter)ati.getTableSorter() ).isReversed() ) {
-				sort.setIcon( arrows[ 1 ] );
-//				sort.setIcon( TableIconLoader.getInstance().getIcon( TableIconConstants.UP_ARROW ) );
-			} else {
-				sort.setIcon( arrows[ 0 ] );
-//				sort.setIcon( TableIconLoader.getInstance().getIcon( TableIconConstants.DOWN_ARROW ) );
+		try {
+			if ( table.convertColumnIndexToView( ( (BasicTableSorter)ati.getTableSorter() ).getModelIndex() ) == column ) { //This is only safe if you know for a fact that your sorter is/extends BasicTableSorter
+				JLabel sort = new GradientLabel();
+				sort.setOpaque( false );
+				if ( ( (BasicTableSorter)ati.getTableSorter() ).isReversed() ) {
+					sort.setIcon( arrows[ 1 ] );
+	//				sort.setIcon( TableIconLoader.getInstance().getIcon( TableIconConstants.UP_ARROW ) );
+				} else {
+					sort.setIcon( arrows[ 0 ] );
+	//				sort.setIcon( TableIconLoader.getInstance().getIcon( TableIconConstants.DOWN_ARROW ) );
+				}
+				p.add( sort, BorderLayout.WEST );
 			}
-			p.add( sort, BorderLayout.WEST );
-		}
-		if ( ati.getFilterManager().hasFilter( table.convertColumnIndexToModel( column ) ) ) {
-			JLabel filter = new GradientLabel();
-			filter.setOpaque( false );
-			filter.setIcon( TableIconLoader.getInstance().getIcon( TableIconConstants.FILTER ) );
-			p.add( filter, BorderLayout.EAST );
+			if ( ati.getFilterManager().hasFilter( table.convertColumnIndexToModel( column ) ) ) {
+				JLabel filter = new GradientLabel();
+				filter.setOpaque( false );
+				filter.setIcon( TableIconLoader.getInstance().getIcon( TableIconConstants.FILTER ) );
+				p.add( filter, BorderLayout.EAST );
+			}
+		} catch ( ArrayIndexOutOfBoundsException e ) {
+			//do nothing with this since it doesn't really effect functionality and can only happen in very select cases
 		}
 		return p;
 	}
