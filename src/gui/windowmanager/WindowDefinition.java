@@ -13,5 +13,7 @@ public interface WindowDefinition {
 	public JComponent getCenterComponent( Object state );
 	
 	public String getTitle();
+	
+	public default void closed() {};
 
 }
