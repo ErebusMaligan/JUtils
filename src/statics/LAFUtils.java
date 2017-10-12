@@ -1,12 +1,5 @@
 package statics;
 
-import gui.button.CustomButtonUI;
-import gui.internalframe.CustomInternalFrameProperties;
-import gui.menu.CustomMenuUI;
-import gui.menuitem.CustomMenuItemUI;
-import gui.scroll.ScrollBarColorDecorator;
-import gui.tab.SimpleColorTabbedPaneUI;
-
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -15,6 +8,7 @@ import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -24,7 +18,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
 import javax.swing.UIManager;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
+
+import gui.button.CustomButtonUI;
+import gui.internalframe.CustomInternalFrameProperties;
+import gui.menu.CustomMenuUI;
+import gui.menuitem.CustomMenuItemUI;
+import gui.scroll.ScrollBarColorDecorator;
+import gui.tab.SimpleColorTabbedPaneUI;
 
 /**
  * @author Daniel J. Rivers
@@ -76,7 +78,7 @@ public class LAFUtils {
 		applySimpleUI( bar, bg, fg );
 	}
 	
-	private static void applySimpleUI( JComponent comp, Color bg, Color fg ) {
+	public static void applySimpleUI( JComponent comp, Color bg, Color fg ) {
 		for ( Component c : comp.getComponents() ) {
 			if ( c instanceof JMenuItem ) {
 				if ( !( c instanceof JMenu ) ) {
@@ -94,6 +96,9 @@ public class LAFUtils {
 				JSeparator sep = ( (JSeparator)c );
 				sep.setBackground( fg );
 				sep.setOpaque( true );
+			} else if ( c instanceof JComboBox ) {
+				JComboBox<?> combo = (JComboBox<?>)c;
+				combo.setUI( new BasicComboBoxUI() );
 			}
 		}
 	}
