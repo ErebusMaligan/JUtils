@@ -76,11 +76,19 @@ public abstract class BasicXMLDocumentHandler {
 	/**
 	 * Prompts a user to select a window configuration and then make a call to parse the resulting XML document
 	 */
-	public void loadDoc() {
-		JFileChooser fc = getFileChooser();
-		if ( JFileChooser.APPROVE_OPTION == fc.showOpenDialog( parent ) ) {
-			selectedFile = fc.getSelectedFile();
-			String path = fc.getSelectedFile().getAbsolutePath();
+	public void loadDoc( File f ) {
+		if ( f == null || !f.exists() ) {
+			JFileChooser fc = getFileChooser();
+			if ( JFileChooser.APPROVE_OPTION == fc.showOpenDialog( parent ) ) {
+				selectedFile = fc.getSelectedFile();
+			} else {
+				selectedFile = null;
+			}
+		} else {
+			selectedFile = f;
+		}
+		if ( selectedFile != null ) {
+			String path = selectedFile.getAbsolutePath();
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder docBuilder;
 			try {
