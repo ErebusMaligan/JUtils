@@ -1,5 +1,6 @@
 package gui.page.panel;
 
+import icon.DefaultIconLoader;
 
 /**
  * @author Daniel J. Rivers
@@ -12,4 +13,6 @@ public interface PagedDataViewerControlFactory {
 	public PageControlPanel getPageControlPanel();
 	
 	public SelectionControlPanel getSelectionControlPanel();
+	
+	public DefaultIconLoader getIconLoader();
 }

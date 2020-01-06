@@ -9,6 +9,7 @@ import gui.page.panel.SelectionControlPanel;
 
 import java.awt.BorderLayout;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class PagedDataViewer<T> extends JPanel implements PageListener, ListSele
 		list.addListSelectionListener( this );
 		this.setLayout( new BorderLayout() );
 		pcp = controls.getPageControlPanel();
-		pcp.construct( this );
+		pcp.construct( this, controls.getIconLoader() );
 		this.add( pcp, BorderLayout.NORTH );
 		this.add( new JScrollPane( list ), BorderLayout.CENTER );
 		scp = controls.getSelectionControlPanel();
@@ -137,5 +138,13 @@ public class PagedDataViewer<T> extends JPanel implements PageListener, ListSele
 			selection.forEach( s -> ret.add( data.get( s ) ) );
 		}
 		return data.size() == selection.size() ? data : ret;
+	}
+	
+	public List<T> getAllData() {
+		return data;
+	}
+	
+	public void setEnabled( boolean enabled ) {
+		Arrays.asList( list, pcp, scp ).forEach( c -> c.setEnabled( enabled ) );
 	}
 }

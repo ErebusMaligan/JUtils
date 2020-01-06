@@ -1,6 +1,7 @@
 package gui.page.icon;
 
 import icon.DefaultIconLoader;
+import static gui.page.icon.PagedDataViewerIconConstants.*;
 
 
 /**
@@ -11,14 +12,6 @@ import icon.DefaultIconLoader;
  */
 public class PagedDataViewerIconLoader extends DefaultIconLoader {
 
-	public static final String FIRST = "first";
-	
-	public static final String NEXT = "next";
-	
-	public static final String PREVIOUS = "previous";
-	
-	public static final String LAST = "last";
-	
 	public PagedDataViewerIconLoader() {
 		names = new String[] { FIRST, NEXT, PREVIOUS, LAST };
 		init();

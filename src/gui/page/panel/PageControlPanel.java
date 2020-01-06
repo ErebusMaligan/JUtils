@@ -1,8 +1,9 @@
 package gui.page.panel;
 
-import gui.page.PagedDataViewer;
-
 import javax.swing.JPanel;
+
+import gui.page.PagedDataViewer;
+import icon.DefaultIconLoader;
 
 /**
  * @author Daniel J. Rivers
@@ -17,4 +18,6 @@ public abstract class PageControlPanel extends JPanel {
 	public abstract void construct( PagedDataViewer<?> dataViewer );
 	
 	public abstract void setPageInfo( int cur, int pages, int per, int minPer, int maxPer );
+
+	public abstract void construct( PagedDataViewer<?> dataViewer, DefaultIconLoader icon );
 }

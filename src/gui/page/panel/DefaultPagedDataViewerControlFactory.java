@@ -1,5 +1,8 @@
 package gui.page.panel;
 
+import gui.page.icon.PagedDataViewerIconLoader;
+import icon.DefaultIconLoader;
+
 /**
  * @author Daniel J. Rivers
  *         2015
@@ -17,4 +20,10 @@ public class DefaultPagedDataViewerControlFactory implements PagedDataViewerCont
 	public SelectionControlPanel getSelectionControlPanel() {
 		return new DefaultSelectionControlPanel();
 	}
+
+	@Override
+	public DefaultIconLoader getIconLoader() {
+		return new PagedDataViewerIconLoader();
+	}
+	
 }

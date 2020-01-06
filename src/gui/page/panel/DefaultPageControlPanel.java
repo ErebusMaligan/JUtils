@@ -5,6 +5,7 @@ import gui.page.PagedDataViewer;
 import gui.page.icon.PagedDataViewerIconLoader;
 import gui.page.model.PageControlModel;
 import gui.page.model.PageControlModel.PAGES;
+import icon.DefaultIconLoader;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -20,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import statics.GU;
+import static gui.page.icon.PagedDataViewerIconConstants.*;
 
 /**
  * @author Daniel J. Rivers
@@ -38,7 +40,7 @@ public class DefaultPageControlPanel extends PageControlPanel {
 	private JTextField per = new EnhancedFormattedTextField( NumberFormat.getIntegerInstance() );
 
 	@Override
-	public void construct( PagedDataViewer<?> dataViewer ) {
+	public void construct( PagedDataViewer<?> dataViewer, DefaultIconLoader icon ) {
 		PageControlModel model = dataViewer.getPageControlModel();
 		this.setLayout( new BoxLayout( this, BoxLayout.X_AXIS ) );
 		int x = 10;
@@ -46,17 +48,16 @@ public class DefaultPageControlPanel extends PageControlPanel {
 		Arrays.asList( new JComponent[] { cur, per, pages } ).forEach( c -> GU.setSizes( c, GU.SHORTER ) );
 		Arrays.asList( new JComponent[] { new JLabel( "Page: ", JLabel.RIGHT ), cur, pages } ).forEach( c -> this.add( c ) );
 		cur.addActionListener( e -> model.setPage( Integer.parseInt( cur.getText() ) - 1 ) );
-		PagedDataViewerIconLoader i = new PagedDataViewerIconLoader();
 		Dimension bDim = new Dimension( 35, 35 );
 		GU.spacer( this, bDim );
-		Arrays.asList( new Object[][] { new Object[] { PagedDataViewerIconLoader.FIRST, PAGES.FIRST, "Display first page" }, new Object[] { PagedDataViewerIconLoader.PREVIOUS, PAGES.PREVIOUS, "Display previous page" }, 
-				new Object[] { PagedDataViewerIconLoader.NEXT, PAGES.NEXT, "Display next page" }, new Object[] { PagedDataViewerIconLoader.LAST, PAGES.LAST, "Display last page" } } )
+		Arrays.asList( new Object[][] { new Object[] { FIRST, PAGES.FIRST, "Display first page" }, new Object[] { PREVIOUS, PAGES.PREVIOUS, "Display previous page" }, 
+				new Object[] { NEXT, PAGES.NEXT, "Display next page" }, new Object[] { LAST, PAGES.LAST, "Display last page" } } )
 		.forEach( arr -> {
 			JButton b = GU.createButton( "", GU.SHORT, e -> model.setPage( (PAGES)arr[ 1 ] ) );
 			b.setToolTipText( (String)arr[ 2 ] );
 //			b.setContentAreaFilled( false );
 			GU.setSizes( b, bDim );
-			b.setIcon( i.getIcon( (String)arr[ 0 ] ) );
+			b.setIcon( icon.getIcon( (String)arr[ 0 ] ) );
 			this.add( b );
 			GU.spacer( this, bDim );
 		} );
@@ -71,5 +72,10 @@ public class DefaultPageControlPanel extends PageControlPanel {
 		this.pages.setText( " /  " + pages );
 		this.per.setText( String.valueOf( per ) );
 		this.per.setToolTipText( "Must be a value between: " + minPer + " - " + maxPer );
+	}
+
+	@Override
+	public void construct( PagedDataViewer<?> dataViewer ) {
+		construct( dataViewer, new PagedDataViewerIconLoader() );
 	}
 }
