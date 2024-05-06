@@ -26,7 +26,7 @@ public class OKCancelDialog extends JDialog {
 	
 	protected int result;
 	
-	protected JButton ok = new JButton( "Ok" );
+	protected JButton ok = new JButton( "OK" );
 	
 	protected JButton cancel = new JButton( "Cancel" );
 	

@@ -75,6 +75,7 @@ public abstract class BasicXMLDocumentHandler {
 	
 	/**
 	 * Prompts a user to select a window configuration and then make a call to parse the resulting XML document
+	 * @param f file to load
 	 */
 	public void loadDoc( File f ) {
 		if ( f == null || !f.exists() ) {
