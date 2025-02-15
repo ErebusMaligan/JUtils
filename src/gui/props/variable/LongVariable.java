@@ -9,11 +9,11 @@ package gui.props.variable;
 public class LongVariable extends PropsVariable {
 
 	public LongVariable() {
-		var = new Long( 0 );
+		var = Long.valueOf( 0 );
 	}
 	
 	public LongVariable( long var ) {
-		this.var = new Long( var );
+		this.var = Long.valueOf( var );
 	}
 	
 	@Override
@@ -33,6 +33,6 @@ public class LongVariable extends PropsVariable {
 
 	@Override
 	public String toString() {
-		return String.valueOf( (Long)var );
+		return String.valueOf( var );
 	}
 }

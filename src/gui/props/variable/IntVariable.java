@@ -10,11 +10,11 @@ package gui.props.variable;
 public class IntVariable extends PropsVariable {
 
 	public IntVariable() {
-		var = new Integer( 0 );
+		var = Integer.valueOf( 0 );
 	}
 	
 	public IntVariable( int var ) {
-		this.var = new Integer( var );
+		this.var = Integer.valueOf( var );
 	}
 	
 	@Override
@@ -25,7 +25,7 @@ public class IntVariable extends PropsVariable {
 
 	@Override
 	public String toString() {
-		return String.valueOf( (Integer)var );
+		return String.valueOf( var );
 	}
 
 	@Override

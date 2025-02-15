@@ -173,7 +173,7 @@ public abstract class EnhancedJProgressBar extends JProgressBar {
 			}
 			double d = i / (double)this.getMaximum();
 			double p = ( getOrientation() == HORIZONTAL ? r.width : r.height ) * d;
-			ret = new Double( p ).intValue();
+			ret = Double.valueOf( p ).intValue();
 		}
 		return ret;
 	}

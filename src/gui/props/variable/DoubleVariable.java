@@ -12,20 +12,20 @@ public class DoubleVariable extends PropsVariable {
 		this( 0d );
 	}
 	
-	public DoubleVariable( double var ) {
-		this.var = new Double( var );
+	public DoubleVariable( double v ) {
+		this.var = Double.valueOf( v );
 	}
 	
 	@Override
-	public void fromString( String var ) {
-		fromStringViaListener( var );
-		super.fromString( var );
+	public void fromString( String v ) {
+		fromStringViaListener( v );
+		super.fromString( v );
 	}
 	
 	@Override
-	public void fromStringViaListener( String var ) {
+	public void fromStringViaListener( String v ) {
 		try {
-			this.var = Double.parseDouble( var );
+			this.var = Double.parseDouble( v );
 		} catch ( NumberFormatException e ) {
 			this.var = 0f;
 		}

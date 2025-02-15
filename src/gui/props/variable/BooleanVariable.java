@@ -10,27 +10,27 @@ package gui.props.variable;
 public class BooleanVariable extends PropsVariable {
 
 	public BooleanVariable() {
-		var = new Boolean( true );
+		var = Boolean.valueOf( true );
 	}
 	
-	public BooleanVariable( boolean var ) {
-		this.var = new Boolean( var );
+	public BooleanVariable( boolean v ) {
+		this.var = Boolean.valueOf( v );
 	}
 	
 	@Override
-	public void fromString( String var ) {
-		fromStringViaListener( var );
-		super.fromString( var );
+	public void fromString( String v ) {
+		fromStringViaListener( v );
+		super.fromString( v );
 	}
 
 	@Override
 	public String toString() {
-		return String.valueOf( (Boolean)var );
+		return String.valueOf( var );
 	}
 
 	@Override
-	public void fromStringViaListener( String var ) {
-		this.var = Boolean.parseBoolean( var );
+	public void fromStringViaListener( String v ) {
+		this.var = Boolean.parseBoolean( v );
 	}
 
 }

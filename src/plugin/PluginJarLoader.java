@@ -2,6 +2,7 @@ package plugin;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -16,7 +17,7 @@ public class PluginJarLoader {
 		try {
 			Method method = URLClassLoader.class.getDeclaredMethod( "addURL", new Class[] { URL.class } );
 			method.setAccessible( true );
-			method.invoke( (URLClassLoader)ClassLoader.getSystemClassLoader(), new Object[] { new URL( "jar:file:" + jar + "!/" ) } );
+			method.invoke( (URLClassLoader)ClassLoader.getSystemClassLoader(), new Object[] { URI.create( "jar:file:" + jar + "!/" ).toURL() } );
 		} catch ( Throwable t ) {
 			t.printStackTrace();
 			throw new IOException( "Error, could not add URL to system classloader" );

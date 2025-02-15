@@ -13,7 +13,7 @@ public class FloatVariable extends PropsVariable {
 	}
 	
 	public FloatVariable( float var ) {
-		this.var = new Float( var );
+		this.var = Float.valueOf( var );
 	}
 	
 	@Override
